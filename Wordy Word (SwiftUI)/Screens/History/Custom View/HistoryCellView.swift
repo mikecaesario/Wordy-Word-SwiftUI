@@ -13,11 +13,31 @@
 import SwiftUI
 
 struct HistoryCellView: View {
+    
+    let history: EditHistoryItem
+    
+    @State private var cellSize: CGSize = .zero
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        ZStack {
+            
+            Text(history.uneditedItem)
+                .font(.custom(.fonts.poppinsMedium, size: 17))
+                .foregroundStyle(Color.text.white)
+                .lineLimit(7)
+        }
+        .padding()
+        .getViewSize($cellSize)
+        .background(
+            RoundedRectangle(cornerRadius: cellSize.width / 15)
+                .foregroundStyle(Color.background.thirtiary)
+        )
     }
 }
 
 #Preview {
-    HistoryCellView()
+    
+    let data = MockViewModel.previewData[0].items[0]
+    return HistoryCellView(history: data)
 }

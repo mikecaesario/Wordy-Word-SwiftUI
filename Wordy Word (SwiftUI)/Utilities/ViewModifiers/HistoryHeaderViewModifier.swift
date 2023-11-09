@@ -11,3 +11,17 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct HistoryHeaderViewModifier: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        
+        content
+            .font(.custom(.fonts.poppinsMedium, size: 20))
+            .foregroundStyle(Color.text.grey)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}

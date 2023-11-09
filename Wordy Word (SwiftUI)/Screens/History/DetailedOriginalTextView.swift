@@ -13,11 +13,60 @@
 import SwiftUI
 
 struct DetailedOriginalTextView: View {
+    
+    @Environment(\.dismiss) private var dismiss
+    
+    let originalText: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                
+                Text(originalText)
+                    .font(.custom(.fonts.poppinsMedium, size: 22))
+                    .foregroundStyle(Color.text.white)
+                    .multilineTextAlignment(.leading)
+                    .textSelection(.enabled)
+                    .padding(.horizontal)
+                    .padding(.vertical, 105)
+            }
+            
+            DetailedHistoryNavigationBarButtonsView {
+                dismiss()
+            } onCopyButtonPress: {
+                
+            }
+
+            footer
+        }
+        .background(
+            Color.background.primary
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
 #Preview {
-    DetailedOriginalTextView()
+    let data = MockViewModel.previewData[0].items[0].uneditedItem
+    return DetailedOriginalTextView(originalText: data)
+}
+
+extension DetailedOriginalTextView {
+    
+    var footer: some View {
+        
+        ZStack {
+            
+            Text("Original")
+                .font(.custom(.fonts.poppinsSemiBold, size: 22))
+                .foregroundStyle(Color.text.white)
+        }
+        .frame(maxWidth: .infinity, maxHeight: 100)
+        .padding()
+        .background(
+            LinearGradient(stops: [Gradient.Stop(color: .background.primary, location: 0.6), Gradient.Stop(color: .clear, location: 0.3)], startPoint: .top, endPoint: .bottom)
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+    }
 }
