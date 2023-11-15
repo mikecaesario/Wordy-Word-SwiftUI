@@ -1,8 +1,8 @@
 //  
-//  SettingsView.swift
+//  CustomSlider.swift
 //  Wordy Word (SwiftUI)
 //
-//  Created with ❤️‍🔥 by Michael Caesario on 09/11/23.
+//  Created with ❤️‍🔥 by Michael Caesario on 14/11/23.
 //  Copyright © 2023 Michael Caesario. All rights reserved.
 // 
 //  Website: https://mikecaesario.app
@@ -12,12 +12,12 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct CustomSlider: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    SettingsView()
+    CustomSlider()
 }
