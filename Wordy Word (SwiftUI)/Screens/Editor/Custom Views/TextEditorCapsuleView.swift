@@ -43,12 +43,29 @@ struct TextEditorCapsuleView: View {
                     }
                 }
                 .submitLabel(.done)
-                .onSubmit { 
-                    
-                    isFocused = nil
-                    viewModel.beginEditingText()
-                }
                 .onAppear { viewModel.editingText = placeholderText }
+                .onChange(of: viewModel.editingText) { text in
+                    
+                    if text.last == "\n" {
+                        
+                        isFocused = nil
+                        
+                        let endIndex = viewModel.editingText.index(before: viewModel.editingText.endIndex)
+                        
+                        viewModel.editingText.remove(at: endIndex)
+                        
+                        viewModel.beginEditingText()
+                    }
+                }
+                .onChange(of: isFocused) { focus in
+                    
+                    if focus == nil {
+                        
+                        if viewModel.editingText.isEmpty || viewModel.editingText == " " || viewModel.editingText == "\n" {
+                            viewModel.editingText = placeholderText
+                        }
+                    }
+                }
                 
 
             buttonAndLabelScrollView
