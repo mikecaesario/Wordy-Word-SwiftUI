@@ -127,7 +127,7 @@ final class AppViewModel: ObservableObject {
 
             textResult = result
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { [weak self] in
                 
                 guard let self = self else { return }
                 self.showResultView = true

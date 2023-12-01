@@ -44,15 +44,14 @@ struct TextEditorView: View {
                             
                             RemoveButtonStackView()
                                 .transition(.move(edge: .top))
-                                .opacity(viewModel.showRemoveButtonStack ? 1.0 : 0.0)
+                                .transition(AnyTransition.opacity.combined(with: .move(edge: .bottom)))
                         }
                         
                         if viewModel.showReplaceTextfield {
                             
                             ReplaceTextfieldStackView(isFocused: $isFocused)
                                 .padding(.horizontal, 18)
-                                .transition(.move(edge: .bottom))
-                                .opacity(viewModel.showReplaceTextfield ? 1.0 : 0.0)
+                                .transition(AnyTransition.opacity.combined(with: .move(edge: .bottom)))
                         }
                         
                         TextEditorCapsuleView(isFocused: $isFocused)
@@ -67,16 +66,15 @@ struct TextEditorView: View {
                                 .frame(height: geo.size.height * 0.5)
                                 .frame(maxWidth: .infinity)
                                 .padding(.horizontal, 18)
-                                .transition(.move(edge: .bottom))
-                                .opacity(viewModel.showResultView ? 1.0 : 0.0)
+                                .transition(AnyTransition.opacity.combined(with: .move(edge: .bottom)))
                         }
 
                     }
                     .padding(.top, 75)
                     .padding(.bottom, sceenSize.width * 0.25)
-                    .animation(.linear(duration: 0.3), value: viewModel.showRemoveButtonStack)
-                    .animation(.linear(duration: 0.3), value: viewModel.showReplaceTextfield)
-                    .animation(.linear(duration: 0.3), value: viewModel.showResultView)
+                    .animation(.linear(duration: 0.4), value: viewModel.showRemoveButtonStack)
+                    .animation(.linear(duration: 0.4), value: viewModel.showReplaceTextfield)
+                    .animation(.linear(duration: 0.4), value: viewModel.showResultView)
 
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

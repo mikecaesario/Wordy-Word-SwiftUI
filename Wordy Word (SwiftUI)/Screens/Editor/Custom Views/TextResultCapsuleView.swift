@@ -25,10 +25,11 @@ struct TextResultCapsuleView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 
                 Text(viewModel.textResult)
-                    .padding()
                     .font(Font.custom(.fonts.poppinsSemiBold, size: 28))
                     .multilineTextAlignment(.leading)
                     .foregroundStyle(Color.text.white)
+                    .padding([.bottom, .horizontal], 25)
+                    .padding(.top, 85)
             }
 
             buttonAndLabelScrollView
