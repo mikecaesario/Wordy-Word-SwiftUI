@@ -17,7 +17,6 @@ struct TextEditorCapsuleView: View {
     @EnvironmentObject var viewModel: AppViewModel
     
     @FocusState private var isTextEditorIsFocused: Bool
-    @State private var textEditorValue: String = ""
     
     private let placeholderText = "Enter or paste your text here"
     
@@ -26,24 +25,42 @@ struct TextEditorCapsuleView: View {
     var body: some View {
         
         ZStack {
-           
-            TextEditor(text: $viewModel.editingText)
-                .disableTextEditorBackground()
-                .padding([.top, .horizontal], 20)
+
+            textEditor
+
+            buttonAndLabelScrollView
+                .frame(height: 60)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                .padding(.bottom, 16)
+            
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.background.quarternary)
+        .cornerRadius(50)
+    }
+}
+
+#Preview {
+    
+    TextEditorCapsuleView(isFocused: FocusState<whichTextfieldOrTextEditorIsFocused?>().projectedValue)
+        .environmentObject(MockViewModel.shared.viewModel)
+       
+}
+
+extension TextEditorCapsuleView {
+    
+    private var textEditor: some View {
+        
+        ScrollView(.vertical, showsIndicators: true) {
+            
+            TextField(placeholderText, text: $viewModel.editingText, axis: .vertical)
+                .padding([.top, .horizontal], 25)
                 .padding(.bottom, 85)
                 .font(.system(size: 23, weight: .medium))
+                .foregroundStyle(Color.text.black)
                 .tint(Color.text.black)
-                .foregroundStyle(viewModel.editingText == placeholderText ? Color.text.placeholder : Color.text.editor)
                 .focused($isFocused, equals: .editor)
-                .onTapGesture {
-                    
-                    if viewModel.editingText == placeholderText {
-                        
-                        viewModel.editingText = ""
-                    }
-                }
-                .submitLabel(.done)
-                .onAppear { viewModel.editingText = placeholderText }
+                .environment(\.colorScheme, .light)
                 .onChange(of: viewModel.editingText) { text in
                     
                     if text.last == "\n" {
@@ -57,45 +74,13 @@ struct TextEditorCapsuleView: View {
                         viewModel.beginEditingText()
                     }
                 }
-                .onChange(of: isFocused) { focus in
-                    
-                    if focus == nil {
-                        
-                        if viewModel.editingText.isEmpty || viewModel.editingText == " " || viewModel.editingText == "\n" {
-                            viewModel.editingText = placeholderText
-                        }
-                    }
-                }
-                
-
-            buttonAndLabelScrollView
-                .frame(height: 60)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                .padding(.bottom, 16)
-            
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.background.quarternary)
-        .cornerRadius(50)
-        .onChange(of: isFocused) { value in
-            
-            if value == nil && viewModel.editingText == "" {
-                viewModel.editingText = placeholderText
-            }
+        .onTapGesture {
+            isFocused = .editor
         }
     }
-}
-
-#Preview {
     
-    TextEditorCapsuleView(isFocused: FocusState<whichTextfieldOrTextEditorIsFocused?>().projectedValue)
-        .environmentObject(MockViewModel.shared.viewModel)
-       
-}
-
-extension TextEditorCapsuleView {
-    
-    var buttonAndLabelScrollView: some View {
+    private var buttonAndLabelScrollView: some View {
         
         ScrollView(.horizontal, showsIndicators: false) {
             
@@ -112,7 +97,7 @@ extension TextEditorCapsuleView {
                                         onSuccessBackgroundColor: .background.quarternary,
                                         strokeColor: .text.black) {
                     
-                    viewModel.copyToClipboard()
+                    viewModel.pasteFromClipboard()
                 }
                 
                 PillLabelWithStroke(count: viewModel.editingTextCharacterCount, text: viewModel.editingTextCharacterCount > 1 ? "Characters" : "Character", textColor: .text.black, backgroundColor: .background.quarternary, borderColor: .text.black)

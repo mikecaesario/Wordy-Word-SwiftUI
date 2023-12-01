@@ -67,7 +67,7 @@ extension TextResultCapsuleView {
                                         onSuccessBackgroundColor: .background.secondary,
                                         strokeColor: .text.grey) {
                     
-                    viewModel.copyToClipboard()
+                    viewModel.copyToClipboard(withString: viewModel.textResult)
                 }
                 
                 

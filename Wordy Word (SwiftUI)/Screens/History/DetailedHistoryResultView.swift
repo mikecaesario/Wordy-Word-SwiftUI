@@ -36,7 +36,7 @@ struct DetailedHistoryResultView: View {
             DetailedHistoryNavigationBarButtonsView {
                 dismiss()
             } onCopyButtonPress: {
-
+                UIPasteboard.general.string = detailedHistory.result
             }
 
             footer
@@ -82,43 +82,3 @@ extension DetailedHistoryResultView {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
     }
 }
-struct DetailedHistoryNavigationBarButtonsView: View {
-    
-    let onBackButtonPress: () -> ()
-    let onCopyButtonPress: () -> ()
-    
-    @State private var viewSize: CGSize = .zero
-    
-    var body: some View {
-        
-        ZStack {
-            
-            HStack {
-                
-                Button {
-                    onBackButtonPress()
-                } label: {
-                    NavigationBarCircleButton(symbolName: "chevron.left")
-                }
-                .frame(maxWidth: viewSize.height * 0.55, maxHeight: viewSize.height * 0.55)
-                
-                Spacer()
-                
-                Button {
-                    onCopyButtonPress()
-                } label: {
-                    NavigationBarCircleButton(symbolName: "doc.on.doc")
-                }
-                .frame(maxWidth: viewSize.height * 0.55, maxHeight: viewSize.height * 0.55)
-            }
-            .padding(.horizontal)
-        }
-        .frame(height: 100)
-        .getViewSize($viewSize)
-        .background(
-            LinearGradient(stops: [Gradient.Stop(color: .clear, location: 1.0), Gradient.Stop(color: .background.primary, location: 0.6)], startPoint: .top, endPoint: .bottom)
-        )
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-    }
-}
-

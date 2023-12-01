@@ -36,10 +36,9 @@ struct TabBarView: View {
                     }
                     .frame(width: geo.size.height * 0.09, height: geo.size.height * 0.09)
                     
-                    
                 }
                 .padding(5)
-                .background(Capsule().fill(.ultraThinMaterial))
+                .background(Capsule().fill(.thinMaterial))
                 .environment(\.colorScheme, .light)
                 .frame(maxWidth: geo.size.width * 0.4, maxHeight: geo.size.height * 0.1)
                 

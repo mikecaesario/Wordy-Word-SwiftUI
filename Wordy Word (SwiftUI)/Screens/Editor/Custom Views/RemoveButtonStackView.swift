@@ -26,13 +26,19 @@ struct RemoveButtonStackView: View {
                     
                     PillButtonWithStroke(character: char, isCurrentlySelected: isCharacterExistInTheArray(char: char)) {
                         
+                        // Check if the character already existed in the array
                         if viewModel.removeCharacterArray.contains(char) {
                             
+                            // Get the exact index of the selected character from the array
                             if let index = viewModel.removeCharacterArray.firstIndex(of: char) {
                                 
+                                // Remove it from the array
                                 viewModel.removeCharacterArray.remove(at: index)
                             }
+                            
                         } else {
+                            
+                            // If the character didn't exist, add it to the array
                             viewModel.removeCharacterArray.append(char)
                         }
                     }
@@ -41,7 +47,7 @@ struct RemoveButtonStackView: View {
             .padding(.vertical)
             .padding(.horizontal, 18)
         }
-        .frame(maxHeight: 60)
+        .frame(height: 60)
     }
 }
 
@@ -55,6 +61,7 @@ extension RemoveButtonStackView {
     private func isCharacterExistInTheArray(char: String) -> Bool {
         
         if viewModel.removeCharacterArray.contains(char) {
+            
             return true
         } else {
             

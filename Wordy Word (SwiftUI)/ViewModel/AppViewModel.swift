@@ -20,14 +20,25 @@ public enum whichTextfieldOrTextEditorIsFocused {
 final class AppViewModel: ObservableObject {
     
     @Published var historyData: [HistoryItems] = []
+    
     @Published var editingStyle: EditingStyleEnum? {
         didSet {
             showViewIfNeeded(style: editingStyle)
+            beginEditingText()
         }
     }
     
-    @Published var editingText = ""
-    @Published private(set) var textResult = ""
+    @Published var editingText = "" {
+        didSet {
+            calculateUneditedText()
+        }
+    }
+    
+    @Published private(set) var textResult = "" {
+        didSet {
+            calculateResultText()
+        }
+    }
         
     @Published var findText = ""
     @Published var replaceWithText = ""
@@ -54,9 +65,7 @@ final class AppViewModel: ObservableObject {
     }
     
     @Published var showTabBarModal: TabBarModalEnum?
-    
-    @Published var screenSize: CGSize = .zero
-    
+        
     @AppStorage("maxHistoryLimit") var maxHistoryDataLimit: Int = 5
     
     let removeCharacterArrayButtons = ["*", "_", "/", "+", "(", ")", "%", "#", "!", "?", "@", "|", "{", "}", ":", ".", ","]
@@ -68,39 +77,101 @@ final class AppViewModel: ObservableObject {
         
         self.historyDataManager = historyDataManager
         self.textEditorManager = textEditorManager
-        
-        registerDefaults()
-        
+                
         self.historyData = historyDataManager.fetchHistoryItemsFromJSON()
     }
-    
-    private func registerDefaults() {
+
+    private func calculateUneditedText() {
         
+        editingTextCharacterCount =  editingText.count
+        editingTextWordCount = editingText.wordCount
+        editingTextSentenceCount = editingText.sentenceCount
+        editingTextParagraphCount = editingText.count > 1 ? editingText.paragraphsCount() : 0
     }
     
-    func copyToClipboard() {
+    private func calculateResultText() {
         
+        textResultCharacterCount =  textResult.count
+        textResultWordCount = textResult.wordCount
+        textResultSentenceCount = textResult.sentenceCount
+        textResultParagraphCount = textResult.count > 1 ? textResult.paragraphsCount() : 0
+    }
+    
+    func copyToClipboard(withString: String) {
+        
+        UIPasteboard.general.string = withString
+    }
+    
+    func pasteFromClipboard() {
+        
+        if UIPasteboard.general.hasStrings {
+            
+            if let pasteBoardText = UIPasteboard.general.string {
+                
+                editingText = pasteBoardText
+            }
+        }
     }
     
     func beginEditingText() {
         
+        guard editingText != "", editingStyle != nil else { return }
+        
+        let haptics = UIImpactFeedbackGenerator(style: .rigid)
+
+        do {
+            
+            let result = try textEditorManager.startEditText(text: editingText, editingStyle: editingStyle, remove: removeCharacterArray, find: findText, replace: replaceWithText)
+            
+            self.showResultView = false
+
+            textResult = result
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+                
+                guard let self = self else { return }
+                self.showResultView = true
+            }
+            
+            historyDataManager.saveHistoryItemsToJSON(history: historyData)
+            
+            haptics.impactOccurred()
+            
+        } catch(let error as EditingTextError) {
+            
+            switch error {
+            case .findTextIsEmpty, .replaceTextIsEmpty, .removeIsEmpty:
+                self.showResultView = false
+            default:
+                break
+            }
+            
+        } catch {
+            
+        }
     }
     
     private func showViewIfNeeded(style: EditingStyleEnum?) {
                 
         switch style {
         case .replace:
+            
             showReplaceTextfield = true
             showRemoveButtonStack = false
-            print("SHOWING REPLACE")
+            removeCharacterArray = []
         case .remove:
+            
             showReplaceTextfield = false
             showRemoveButtonStack = true
-            print("SHOWING REMOVE")
-
+            replaceWithText = ""
+            findText = ""
         default:
+            
             showReplaceTextfield = false
             showRemoveButtonStack = false
+            removeCharacterArray = []
+            replaceWithText = ""
+            findText = ""
         }
     }
 }

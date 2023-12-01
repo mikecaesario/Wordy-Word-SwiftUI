@@ -61,17 +61,22 @@ struct TextEditorView: View {
                             .padding(.horizontal, 18)
 
                         
-                        TextResultCapsuleView()
-                            .frame(height: geo.size.height * 0.5)
-                            .frame(maxWidth: .infinity)
-                            .padding(.horizontal, 18)
+                        if viewModel.showResultView {
+                            
+                            TextResultCapsuleView()
+                                .frame(height: geo.size.height * 0.5)
+                                .frame(maxWidth: .infinity)
+                                .padding(.horizontal, 18)
+                                .transition(.move(edge: .bottom))
+                                .opacity(viewModel.showResultView ? 1.0 : 0.0)
+                        }
 
                     }
                     .padding(.top, 75)
                     .padding(.bottom, sceenSize.width * 0.25)
-                    .animation(.easeIn(duration: 0.3), value: viewModel.showRemoveButtonStack)
-                    .animation(.easeIn(duration: 0.3), value: viewModel.showReplaceTextfield)
-                    .animation(.easeIn(duration: 0.3), value: viewModel.showResultView)
+                    .animation(.linear(duration: 0.3), value: viewModel.showRemoveButtonStack)
+                    .animation(.linear(duration: 0.3), value: viewModel.showReplaceTextfield)
+                    .animation(.linear(duration: 0.3), value: viewModel.showResultView)
 
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

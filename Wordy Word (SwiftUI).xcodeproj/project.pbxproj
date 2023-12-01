@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		93408F0D2B0505F000D4484F /* SavedHistorySettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93408F0C2B0505F000D4484F /* SavedHistorySettingsCell.swift */; };
 		93408F0F2B05068C00D4484F /* GoToDeveloperWebsiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93408F0E2B05068C00D4484F /* GoToDeveloperWebsiteCell.swift */; };
+		934362812B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362802B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift */; };
+		934362832B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362822B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift */; };
 		935BFB7C2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BFB7B2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift */; };
 		935BFB7E2AE6B3AB0090465C /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BFB7D2AE6B3AB0090465C /* TextEditorView.swift */; };
 		935BFB802AE6B3AC0090465C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935BFB7F2AE6B3AC0090465C /* Assets.xcassets */; };
@@ -51,6 +53,8 @@
 /* Begin PBXFileReference section */
 		93408F0C2B0505F000D4484F /* SavedHistorySettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedHistorySettingsCell.swift; sourceTree = "<group>"; };
 		93408F0E2B05068C00D4484F /* GoToDeveloperWebsiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToDeveloperWebsiteCell.swift; sourceTree = "<group>"; };
+		934362802B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedHistoryNavigationBarButtonsView.swift; sourceTree = "<group>"; };
+		934362822B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceTextfieldViewModifier.swift; sourceTree = "<group>"; };
 		935BFB782AE6B3AB0090465C /* Wordy Word (SwiftUI).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wordy Word (SwiftUI).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		935BFB7B2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordy_Word__SwiftUI_App.swift; sourceTree = "<group>"; };
 		935BFB7D2AE6B3AB0090465C /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
@@ -157,9 +161,9 @@
 		935BFB892AE814720090465C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				93B7C0502AFD3B030097CB00 /* Settings */,
 				935BFBA12AE82AA80090465C /* Editor */,
 				93B7C03E2AF941FA0097CB00 /* History */,
+				93B7C0502AFD3B030097CB00 /* Settings */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -221,6 +225,7 @@
 			children = (
 				935BFBA22AE837620090465C /* GetViewSizeViewModifier.swift */,
 				93B7C04A2AFCF0980097CB00 /* HistoryHeaderViewModifier.swift */,
+				934362822B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 		93B7C0432AFBF08F0097CB00 /* Custom View */ = {
 			isa = PBXGroup;
 			children = (
+				934362802B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift */,
 				93B7C03F2AF9713A0097CB00 /* NavigationTitleView.swift */,
 				93B7C0442AFBF0BE0097CB00 /* HistoryCellView.swift */,
 			);
@@ -411,6 +417,7 @@
 				93B7C03B2AF606150097CB00 /* RemoveButtonStackView.swift in Sources */,
 				935BFBAD2AE95B9F0090465C /* Color+Ext.swift in Sources */,
 				93B7C0392AF5542B0097CB00 /* ReplaceTextfieldStackView.swift in Sources */,
+				934362812B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift in Sources */,
 				93B7C0552B02A0AD0097CB00 /* CustomSlider.swift in Sources */,
 				935BFB952AE824980090465C /* HistoryModel.swift in Sources */,
 				935BFB7C2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift in Sources */,
@@ -425,6 +432,7 @@
 				93B7C0452AFBF0BE0097CB00 /* HistoryCellView.swift in Sources */,
 				935BFBB82AE99A950090465C /* PreviewProvider+Ext.swift in Sources */,
 				935BFB9A2AE829340090465C /* TextEditorManager.swift in Sources */,
+				934362832B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift in Sources */,
 				93B7C0522AFD44180097CB00 /* SettingsView.swift in Sources */,
 				935BFB9C2AE829590090465C /* TextEditorErrorEnum.swift in Sources */,
 				93B7C04D2AFCF4F20097CB00 /* DetailedHistoryResultView.swift in Sources */,
@@ -570,7 +578,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Wordy-Word--SwiftUI--Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Wordy Word";
+				INFOPLIST_KEY_CFBundleDisplayName = "Wordy Word (SwiftUI)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -581,7 +589,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.mikecaesario.Wordy-Word--SwiftUI-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -605,7 +613,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Wordy-Word--SwiftUI--Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Wordy Word";
+				INFOPLIST_KEY_CFBundleDisplayName = "Wordy Word (SwiftUI)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -616,7 +624,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.mikecaesario.Wordy-Word--SwiftUI-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

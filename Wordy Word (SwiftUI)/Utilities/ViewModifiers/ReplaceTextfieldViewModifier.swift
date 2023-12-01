@@ -10,4 +10,23 @@
 //  LinkedIn: https://www.linkedin.com/in/mikecaesario/
 //
 
-import Foundation
+import SwiftUI
+
+struct ReplaceTextfieldViewModifier: ViewModifier {
+    
+    var currentlyInFocus: whichTextfieldOrTextEditorIsFocused?
+    let focus: whichTextfieldOrTextEditorIsFocused
+    
+    func body(content: Content) -> some View {
+        
+        content
+            .tint(.accent)
+            .foregroundStyle(currentlyInFocus == focus ? Color.text.black : Color.text.white)
+            .padding()
+            .background(
+                Capsule()
+                    .foregroundStyle(currentlyInFocus == focus ? Color.background.quarternary : Color.background.secondary)
+            )
+            .animation(.default, value: currentlyInFocus)
+    }
+}

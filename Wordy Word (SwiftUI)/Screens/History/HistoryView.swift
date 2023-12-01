@@ -69,7 +69,6 @@ extension HistoryView {
                             HistoryCellView(history: item)
                         }
                     }
-                    
                 }
             }
             .padding(.horizontal, 18)

@@ -35,7 +35,7 @@ struct DetailedOriginalTextView: View {
             DetailedHistoryNavigationBarButtonsView {
                 dismiss()
             } onCopyButtonPress: {
-                
+                UIPasteboard.general.string = originalText
             }
 
             footer
