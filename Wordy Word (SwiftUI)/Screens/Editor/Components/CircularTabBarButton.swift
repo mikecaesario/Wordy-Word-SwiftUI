@@ -13,12 +13,9 @@
 import SwiftUI
 
 struct CircularTabBarButton: View {
-    
-    @State private var screenSize: CGSize = .zero
-    
+        
     let imageName: String
     let backgroundColor: Color
-    let paddingAlignment: Edge.Set
     let buttonPress: () -> ()
     
     var body: some View {
@@ -47,7 +44,7 @@ struct CircularTabBarButton: View {
 
 #Preview {
     
-    CircularTabBarButton(imageName: "book", backgroundColor: .button.paste, paddingAlignment: .leading) {
+    CircularTabBarButton(imageName: "book", backgroundColor: .button.paste) {
         
     }
 }

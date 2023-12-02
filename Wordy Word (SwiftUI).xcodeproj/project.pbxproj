@@ -12,6 +12,12 @@
 		934362812B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362802B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift */; };
 		934362832B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362822B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift */; };
 		934362852B1A666400216F1E /* AnyTransition+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362842B1A666400216F1E /* AnyTransition+Ext.swift */; };
+		934362872B1B3CA600216F1E /* PillButtonWithStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362862B1B3CA600216F1E /* PillButtonWithStroke.swift */; };
+		934362892B1B3D5500216F1E /* NavigationBarCircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362882B1B3D5500216F1E /* NavigationBarCircleButtonView.swift */; };
+		9343628B2B1B3DE300216F1E /* PillLabelWithStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9343628A2B1B3DE300216F1E /* PillLabelWithStroke.swift */; };
+		9343628D2B1B405400216F1E /* PillButtonImageWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9343628C2B1B405400216F1E /* PillButtonImageWithText.swift */; };
+		9343628F2B1B408F00216F1E /* OnSuccessPillButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9343628E2B1B408F00216F1E /* OnSuccessPillButtonView.swift */; };
+		934362932B1B85D300216F1E /* DefaultPillButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362922B1B85D300216F1E /* DefaultPillButtonView.swift */; };
 		935BFB7C2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BFB7B2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift */; };
 		935BFB7E2AE6B3AB0090465C /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BFB7D2AE6B3AB0090465C /* TextEditorView.swift */; };
 		935BFB802AE6B3AC0090465C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935BFB7F2AE6B3AC0090465C /* Assets.xcassets */; };
@@ -57,6 +63,12 @@
 		934362802B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedHistoryNavigationBarButtonsView.swift; sourceTree = "<group>"; };
 		934362822B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceTextfieldViewModifier.swift; sourceTree = "<group>"; };
 		934362842B1A666400216F1E /* AnyTransition+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+Ext.swift"; sourceTree = "<group>"; };
+		934362862B1B3CA600216F1E /* PillButtonWithStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillButtonWithStroke.swift; sourceTree = "<group>"; };
+		934362882B1B3D5500216F1E /* NavigationBarCircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarCircleButtonView.swift; sourceTree = "<group>"; };
+		9343628A2B1B3DE300216F1E /* PillLabelWithStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillLabelWithStroke.swift; sourceTree = "<group>"; };
+		9343628C2B1B405400216F1E /* PillButtonImageWithText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillButtonImageWithText.swift; sourceTree = "<group>"; };
+		9343628E2B1B408F00216F1E /* OnSuccessPillButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSuccessPillButtonView.swift; sourceTree = "<group>"; };
+		934362922B1B85D300216F1E /* DefaultPillButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPillButtonView.swift; sourceTree = "<group>"; };
 		935BFB782AE6B3AB0090465C /* Wordy Word (SwiftUI).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wordy Word (SwiftUI).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		935BFB7B2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordy_Word__SwiftUI_App.swift; sourceTree = "<group>"; };
 		935BFB7D2AE6B3AB0090465C /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
@@ -250,6 +262,12 @@
 			isa = PBXGroup;
 			children = (
 				935BFBB32AE994160090465C /* CircularTabBarButton.swift */,
+				934362862B1B3CA600216F1E /* PillButtonWithStroke.swift */,
+				934362882B1B3D5500216F1E /* NavigationBarCircleButtonView.swift */,
+				9343628A2B1B3DE300216F1E /* PillLabelWithStroke.swift */,
+				9343628C2B1B405400216F1E /* PillButtonImageWithText.swift */,
+				9343628E2B1B408F00216F1E /* OnSuccessPillButtonView.swift */,
+				934362922B1B85D300216F1E /* DefaultPillButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -416,17 +434,23 @@
 				935BFBC32AEED7BA0090465C /* EditorNavigationBarView.swift in Sources */,
 				935BFBB42AE994160090465C /* CircularTabBarButton.swift in Sources */,
 				935BFBA52AE83CBE0090465C /* View+Ext.swift in Sources */,
+				9343628D2B1B405400216F1E /* PillButtonImageWithText.swift in Sources */,
+				9343628B2B1B3DE300216F1E /* PillLabelWithStroke.swift in Sources */,
 				935BFBA32AE837620090465C /* GetViewSizeViewModifier.swift in Sources */,
 				93B7C03B2AF606150097CB00 /* RemoveButtonStackView.swift in Sources */,
 				935BFBAD2AE95B9F0090465C /* Color+Ext.swift in Sources */,
+				934362892B1B3D5500216F1E /* NavigationBarCircleButtonView.swift in Sources */,
 				93B7C0392AF5542B0097CB00 /* ReplaceTextfieldStackView.swift in Sources */,
+				934362932B1B85D300216F1E /* DefaultPillButtonView.swift in Sources */,
 				934362812B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift in Sources */,
 				93B7C0552B02A0AD0097CB00 /* CustomSlider.swift in Sources */,
 				935BFB952AE824980090465C /* HistoryModel.swift in Sources */,
 				935BFB7C2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift in Sources */,
 				935BFB8E2AE814E00090465C /* AppViewModel.swift in Sources */,
 				935BFBAF2AE9625B0090465C /* String+Ext.swift in Sources */,
+				934362872B1B3CA600216F1E /* PillButtonWithStroke.swift in Sources */,
 				93B7C04F2AFD2B7C0097CB00 /* DetailedOriginalTextView.swift in Sources */,
+				9343628F2B1B408F00216F1E /* OnSuccessPillButtonView.swift in Sources */,
 				93408F0D2B0505F000D4484F /* SavedHistorySettingsCell.swift in Sources */,
 				935BFBB12AE962D10090465C /* Date+Ext.swift in Sources */,
 				935BFBBA2AEEC4830090465C /* TextResultCapsuleView.swift in Sources */,

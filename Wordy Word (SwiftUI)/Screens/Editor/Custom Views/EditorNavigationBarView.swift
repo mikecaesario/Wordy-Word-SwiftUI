@@ -64,29 +64,3 @@ struct EditorNavigationBarView: View {
         .environmentObject(MockViewModel.shared.viewModel)
 }
 
-struct NavigationBarCircleButtonView: View {
-    
-    let symbolName: String
-    let backgroundColor: Color
-    let onButtonPress: () -> ()
-    
-    var body: some View {
-        
-        Button {
-            onButtonPress()
-        } label: {
-            
-            ZStack(alignment: .center) {
-                
-                Circle()
-                    .aspectRatio(1, contentMode: .fill)
-                    .foregroundStyle(backgroundColor)
-                
-                Image(systemName: symbolName)
-                    .font(Font.system(size: 20, weight: .light))
-                    .imageScale(.small)
-                    .foregroundStyle(Color.text.white)
-            }
-        }
-    }
-}

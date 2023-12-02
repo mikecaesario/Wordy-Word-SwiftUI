@@ -24,14 +24,14 @@ struct TabBarView: View {
                 
                 HStack {
                     
-                    CircularTabBarButton(imageName: "book", backgroundColor: .background.thirtiary, paddingAlignment: .leading) {
+                    CircularTabBarButton(imageName: "book", backgroundColor: .background.thirtiary) {
                         viewModel.showTabBarModal = .history
                     }
                     .frame(width: geo.size.height * 0.09, height: geo.size.height * 0.09)
                     
                     Spacer()
                     
-                    CircularTabBarButton(imageName: "gearshape", backgroundColor: .button.secondary, paddingAlignment: .trailing) {
+                    CircularTabBarButton(imageName: "gearshape", backgroundColor: .button.secondary) {
                         viewModel.showTabBarModal = .settings
                     }
                     .frame(width: geo.size.height * 0.09, height: geo.size.height * 0.09)
