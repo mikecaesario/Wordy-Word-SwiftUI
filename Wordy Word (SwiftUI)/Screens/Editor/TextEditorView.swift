@@ -18,16 +18,11 @@ struct TextEditorView: View {
     
     @StateObject private var viewModel: AppViewModel
     
-    @State private var sceenSize: CGSize = .zero
     @FocusState private var isFocused: whichTextfieldOrTextEditorIsFocused?
     
     init(historyDataManager: HistoryDataManagerProtocol, textEditorManager: TextEditorManagerProtocol) {
-        
-//#if DEBUG
-        _viewModel = StateObject(wrappedValue: MockViewModel.shared.viewModel)
-//#else
-//        _viewModel = StateObject(wrappedValue: AppViewModel(historyDataManager: historyDataManager, textEditorManager: textEditorManager))
-//#endif
+
+        _viewModel = StateObject(wrappedValue: AppViewModel(historyDataManager: historyDataManager, textEditorManager: textEditorManager))
     }
     
     var body: some View {
@@ -70,7 +65,7 @@ struct TextEditorView: View {
 
                     }
                     .padding(.top, 75)
-                    .padding(.bottom, sceenSize.width * 0.25)
+                    .padding(.bottom, geo.size.height * 0.15)
                     .animation(.linear(duration: 0.4), value: viewModel.showRemoveButtonStack)
                     .animation(.linear(duration: 0.4), value: viewModel.showReplaceTextfield)
                     .animation(.linear(duration: 0.4), value: viewModel.showResultView)
@@ -93,7 +88,6 @@ struct TextEditorView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background.primary.ignoresSafeArea())
-            .getViewSize($sceenSize)
             .preferredColorScheme(.dark)
             .sheet(item: $viewModel.showTabBarModal) { modal in
                 

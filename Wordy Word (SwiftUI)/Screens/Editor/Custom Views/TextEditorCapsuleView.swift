@@ -60,6 +60,7 @@ extension TextEditorCapsuleView {
                 .foregroundStyle(Color.text.black)
                 .tint(Color.text.black)
                 .focused($isFocused, equals: .editor)
+                .submitLabel(.done)
                 .environment(\.colorScheme, .light)
                 .onChange(of: viewModel.editingText) { text in
                     
