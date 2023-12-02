@@ -40,9 +40,9 @@ final class AppViewModel: ObservableObject {
         }
     }
         
-    @Published var findText = ""
-    @Published var replaceWithText = ""
-    @Published var removeCharacterArray: [String] = []
+    @Published var findText: String? = nil { didSet { beginEditingText() } }
+    @Published var replaceWithText: String? = nil { didSet { beginEditingText() } }
+    @Published var removeCharacterArray: [String]? = nil { didSet { beginEditingText() } }
     
     @Published private(set) var editingTextCharacterCount = 0
     @Published private(set) var editingTextWordCount = 0
@@ -57,12 +57,7 @@ final class AppViewModel: ObservableObject {
     @Published var showEditorStylePicker = false
     @Published var showResultView = false
     @Published var showReplaceTextfield = false
-    @Published var showRemoveButtonStack = false {
-        didSet {
-            findText = ""
-            replaceWithText = ""
-        }
-    }
+    @Published var showRemoveButtonStack = false 
     
     @Published var showTabBarModal: TabBarModalEnum?
         
@@ -97,9 +92,9 @@ final class AppViewModel: ObservableObject {
         textResultParagraphCount = textResult.count > 1 ? textResult.paragraphsCount() : 0
     }
     
-    func copyToClipboard(withString: String) {
+    func copyResultToClipboard() {
         
-        UIPasteboard.general.string = withString
+        UIPasteboard.general.string = textResult
     }
     
     func pasteFromClipboard() {
@@ -158,20 +153,20 @@ final class AppViewModel: ObservableObject {
             
             showReplaceTextfield = true
             showRemoveButtonStack = false
-            removeCharacterArray = []
+            removeCharacterArray = nil
         case .remove:
             
             showReplaceTextfield = false
             showRemoveButtonStack = true
-            replaceWithText = ""
-            findText = ""
+            replaceWithText = nil
+            findText = nil
         default:
             
             showReplaceTextfield = false
             showRemoveButtonStack = false
-            removeCharacterArray = []
-            replaceWithText = ""
-            findText = ""
+            removeCharacterArray = nil
+            replaceWithText = nil
+            findText = nil
         }
     }
 }

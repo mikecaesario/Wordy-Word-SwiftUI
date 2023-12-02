@@ -43,15 +43,14 @@ struct TextEditorView: View {
                         if viewModel.showRemoveButtonStack {
                             
                             RemoveButtonStackView()
-                                .transition(.move(edge: .top))
-                                .transition(AnyTransition.opacity.combined(with: .move(edge: .bottom)))
+                                .transition(.fadeAndMoveDown)
                         }
                         
                         if viewModel.showReplaceTextfield {
                             
                             ReplaceTextfieldStackView(isFocused: $isFocused)
                                 .padding(.horizontal, 18)
-                                .transition(AnyTransition.opacity.combined(with: .move(edge: .bottom)))
+                                .transition(.fadeAndMoveUp)
                         }
                         
                         TextEditorCapsuleView(isFocused: $isFocused)
@@ -66,7 +65,7 @@ struct TextEditorView: View {
                                 .frame(height: geo.size.height * 0.5)
                                 .frame(maxWidth: .infinity)
                                 .padding(.horizontal, 18)
-                                .transition(AnyTransition.opacity.combined(with: .move(edge: .bottom)))
+                                .transition(.fadeAndMoveUp)
                         }
 
                     }
@@ -129,7 +128,6 @@ struct TextEditorView: View {
                     break
                 }
             }
-            
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }

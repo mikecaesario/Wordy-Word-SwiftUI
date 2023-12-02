@@ -11,6 +11,7 @@
 		93408F0F2B05068C00D4484F /* GoToDeveloperWebsiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93408F0E2B05068C00D4484F /* GoToDeveloperWebsiteCell.swift */; };
 		934362812B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362802B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift */; };
 		934362832B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362822B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift */; };
+		934362852B1A666400216F1E /* AnyTransition+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362842B1A666400216F1E /* AnyTransition+Ext.swift */; };
 		935BFB7C2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BFB7B2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift */; };
 		935BFB7E2AE6B3AB0090465C /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BFB7D2AE6B3AB0090465C /* TextEditorView.swift */; };
 		935BFB802AE6B3AC0090465C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935BFB7F2AE6B3AC0090465C /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		93408F0E2B05068C00D4484F /* GoToDeveloperWebsiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToDeveloperWebsiteCell.swift; sourceTree = "<group>"; };
 		934362802B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedHistoryNavigationBarButtonsView.swift; sourceTree = "<group>"; };
 		934362822B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceTextfieldViewModifier.swift; sourceTree = "<group>"; };
+		934362842B1A666400216F1E /* AnyTransition+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+Ext.swift"; sourceTree = "<group>"; };
 		935BFB782AE6B3AB0090465C /* Wordy Word (SwiftUI).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wordy Word (SwiftUI).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		935BFB7B2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordy_Word__SwiftUI_App.swift; sourceTree = "<group>"; };
 		935BFB7D2AE6B3AB0090465C /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				935BFBB02AE962D10090465C /* Date+Ext.swift */,
 				935BFBB72AE99A950090465C /* PreviewProvider+Ext.swift */,
 				93B7C0412AFBB6A20097CB00 /* DateFormatter+Ext.swift */,
+				934362842B1A666400216F1E /* AnyTransition+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				934362832B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift in Sources */,
 				93B7C0522AFD44180097CB00 /* SettingsView.swift in Sources */,
 				935BFB9C2AE829590090465C /* TextEditorErrorEnum.swift in Sources */,
+				934362852B1A666400216F1E /* AnyTransition+Ext.swift in Sources */,
 				93B7C04D2AFCF4F20097CB00 /* DetailedHistoryResultView.swift in Sources */,
 				93B7C0402AF9713A0097CB00 /* NavigationTitleView.swift in Sources */,
 				935BFBAB2AE8F0500090465C /* TabBarView.swift in Sources */,

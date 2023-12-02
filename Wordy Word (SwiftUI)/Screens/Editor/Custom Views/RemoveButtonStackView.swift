@@ -16,6 +16,8 @@ struct RemoveButtonStackView: View {
     
     @EnvironmentObject var viewModel: AppViewModel
     
+    @State private var temporaryRemoveCharacterArrayInput: [String] = []
+    
     var body: some View {
         
         ScrollView(.horizontal, showsIndicators: false) {
@@ -26,21 +28,7 @@ struct RemoveButtonStackView: View {
                     
                     PillButtonWithStroke(character: char, isCurrentlySelected: isCharacterExistInTheArray(char: char)) {
                         
-                        // Check if the character already existed in the array
-                        if viewModel.removeCharacterArray.contains(char) {
-                            
-                            // Get the exact index of the selected character from the array
-                            if let index = viewModel.removeCharacterArray.firstIndex(of: char) {
-                                
-                                // Remove it from the array
-                                viewModel.removeCharacterArray.remove(at: index)
-                            }
-                            
-                        } else {
-                            
-                            // If the character didn't exist, add it to the array
-                            viewModel.removeCharacterArray.append(char)
-                        }
+                        addOrRemoveSelectedCharacterFromTheArray(char: char)
                     }
                 }
             }
@@ -48,6 +36,10 @@ struct RemoveButtonStackView: View {
             .padding(.horizontal, 18)
         }
         .frame(height: 60)
+        .onChange(of: temporaryRemoveCharacterArrayInput) { newInput in
+            
+            viewModel.removeCharacterArray = newInput
+        }
     }
 }
 
@@ -60,12 +52,31 @@ extension RemoveButtonStackView {
     
     private func isCharacterExistInTheArray(char: String) -> Bool {
         
-        if viewModel.removeCharacterArray.contains(char) {
+        if temporaryRemoveCharacterArrayInput.contains(char) {
             
             return true
         } else {
             
             return false
+        }
+    }
+    
+    private func addOrRemoveSelectedCharacterFromTheArray(char: String) {
+        
+        // Check if the character already existed in the array
+        if temporaryRemoveCharacterArrayInput.contains(char) {
+            
+            // Get the exact index of the selected character from the array
+            if let index = temporaryRemoveCharacterArrayInput.firstIndex(of: char) {
+                
+                // Remove it from the array
+                temporaryRemoveCharacterArrayInput.remove(at: index)
+            }
+            
+        } else {
+            
+            // If the character didn't exist, add it to the array
+            temporaryRemoveCharacterArrayInput.append(char)
         }
     }
 }

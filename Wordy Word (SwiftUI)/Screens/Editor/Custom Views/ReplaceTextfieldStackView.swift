@@ -18,6 +18,9 @@ struct ReplaceTextfieldStackView: View {
     
     @FocusState.Binding var isFocused: whichTextfieldOrTextEditorIsFocused?
     
+    @State private var temporaryInputForFindText = ""
+    @State private var temporaryInputForReplaceWith = ""
+    
     @State private var findKeyboardDoneOnSubmitButton = false
     @State private var replaceKeyboardDoneOnSubmitButton = false
     
@@ -25,21 +28,19 @@ struct ReplaceTextfieldStackView: View {
         
         HStack(spacing: 10) {
             
-            TextField("Find text", text: $viewModel.findText)
+            TextField("Find text", text: $temporaryInputForFindText)
                 .focused($isFocused, equals: .find)
                 .submitLabel(findKeyboardDoneOnSubmitButton ? .done : .next)
                 .onSubmit { checkTextfieldOnSubmit(isFocused) }
                 .replaceTextfieldStyle(currentFocusState: isFocused, focus: .find)
-
-
             
-            TextField("Replace with", text: $viewModel.replaceWithText)
+            TextField("Replace with", text: $temporaryInputForReplaceWith)
                 .focused($isFocused, equals: .replace)
                 .submitLabel(replaceKeyboardDoneOnSubmitButton ? .done : .next)
                 .onSubmit { checkTextfieldOnSubmit(isFocused) }
                 .replaceTextfieldStyle(currentFocusState: isFocused, focus: .replace)
         }
-        .onChange(of: viewModel.findText) { text in
+        .onChange(of: temporaryInputForFindText) { text in
             
             if text.isEmpty {
                 replaceKeyboardDoneOnSubmitButton = false
@@ -47,7 +48,7 @@ struct ReplaceTextfieldStackView: View {
                 replaceKeyboardDoneOnSubmitButton = true
             }
         }
-        .onChange(of: viewModel.replaceWithText) { text in
+        .onChange(of: temporaryInputForReplaceWith) { text in
             
             if text.isEmpty {
                 findKeyboardDoneOnSubmitButton = false
@@ -67,13 +68,14 @@ extension ReplaceTextfieldStackView {
     
     private func checkTextfieldOnSubmit(_ currentlyInFocus: whichTextfieldOrTextEditorIsFocused?) {
         
-        if currentlyInFocus == .find && viewModel.replaceWithText.isEmpty {
+        if currentlyInFocus == .find && temporaryInputForReplaceWith.isEmpty {
             isFocused = .replace
-        } else if currentlyInFocus == .replace && viewModel.findText.isEmpty {
+        } else if currentlyInFocus == .replace && temporaryInputForFindText.isEmpty {
             isFocused = .find
         } else {
             isFocused = nil
-            viewModel.beginEditingText()
+            viewModel.replaceWithText = temporaryInputForReplaceWith
+            viewModel.findText = temporaryInputForFindText
         }
     }
 }
