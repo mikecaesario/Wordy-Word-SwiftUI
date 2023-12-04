@@ -14,7 +14,7 @@ import Foundation
 
 protocol HistoryDataManagerProtocol {
     func fetchHistoryItemsFromJSON() -> [HistoryItems]
-    func saveHistoryItemsToJSON(history: [HistoryItems]?)
+    func saveHistoryItemsToJSON(history: [HistoryItems]?, withLimit: Int)
     func didFinishEditingNowAppendingHistoryItem(history: [HistoryItems], editingText: String, editingResult: String, editingStyle: EditingStyleEnum) -> [HistoryItems]
 }
 
@@ -42,12 +42,12 @@ class HistoryDataManager: HistoryDataManagerProtocol {
         }
     }
     
-    func saveHistoryItemsToJSON(history: [HistoryItems]?) {
+    func saveHistoryItemsToJSON(history: [HistoryItems]?, withLimit: Int) {
         
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first, let history = history else { return }
         let fileUrl = url.appendingPathComponent(fileName)
         
-        let items = Array(history.suffix(25))
+        let items = Array(history.suffix(withLimit))
         
         do {
             let encoder = JSONEncoder()

@@ -110,7 +110,7 @@ final class AppViewModel: ObservableObject {
     
     func beginEditingText() {
         
-        guard editingText != "", editingStyle != nil else { return }
+        guard editingText != "", let style = editingStyle else { return }
         
         let haptics = UIImpactFeedbackGenerator(style: .rigid)
 
@@ -122,13 +122,15 @@ final class AppViewModel: ObservableObject {
 
             textResult = result
             
+            historyData = historyDataManager.didFinishEditingNowAppendingHistoryItem(history: historyData, editingText: editingText, editingResult: result, editingStyle: style)
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { [weak self] in
                 
                 guard let self = self else { return }
                 self.showResultView = true
             }
             
-            historyDataManager.saveHistoryItemsToJSON(history: historyData)
+            historyDataManager.saveHistoryItemsToJSON(history: historyData, withLimit: maxHistoryDataLimit)
             
             haptics.impactOccurred()
             
