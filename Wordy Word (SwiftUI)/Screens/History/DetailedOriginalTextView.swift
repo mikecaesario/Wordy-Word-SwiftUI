@@ -38,7 +38,7 @@ struct DetailedOriginalTextView: View {
                 case .back:
                     dismiss()
                 case .copy:
-                    UIPasteboard.general.string = originalText
+                    copyToClipboard()
                 }
             }
 
@@ -73,5 +73,14 @@ extension DetailedOriginalTextView {
             LinearGradient(stops: [Gradient.Stop(color: .background.primary, location: 0.6), Gradient.Stop(color: .clear, location: 0.3)], startPoint: .top, endPoint: .bottom)
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+    }
+    
+    private func copyToClipboard() {
+        
+        let haptics = UIImpactFeedbackGenerator(style: .medium)
+
+        UIPasteboard.general.string = originalText
+        
+        haptics.impactOccurred(intensity: 0.7)
     }
 }

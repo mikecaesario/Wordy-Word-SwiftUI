@@ -51,8 +51,8 @@ struct EditingStylePickerView: View {
                             
                             EditorMenuItemGrid(style: style, isCurrentlySelected: style == viewModel.editingStyle) {
                                 
-                                viewModel.showEditorStylePicker = false
-                                viewModel.editingStyle = style
+                                didFinishPickingEditingStyle(style: style)
+                                
                             }
                             .frame(height: (geo.size.width / 4) + 20)
                             .frame(maxWidth: geo.size.width / 4)
@@ -94,4 +94,15 @@ struct EditingStylePickerView: View {
         .environment(\.colorScheme, .dark)
 }
 
-
+extension EditingStylePickerView {
+    
+    private func didFinishPickingEditingStyle(style: EditingStyleEnum) {
+        
+        let haptic = UIImpactFeedbackGenerator(style: .medium)
+        
+        viewModel.showEditorStylePicker = false
+        viewModel.editingStyle = style
+        
+        haptic.impactOccurred()
+    }
+}

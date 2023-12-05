@@ -57,9 +57,9 @@ struct DetailedHistoryNavigationBarButtonsView: View {
 
 #Preview {
     
-    DetailedHistoryNavigationBarButtonsView { bar in
+    DetailedHistoryNavigationBarButtonsView { action in
         
-        switch bar {
+        switch action {
         case .back:
             break
         case .copy:

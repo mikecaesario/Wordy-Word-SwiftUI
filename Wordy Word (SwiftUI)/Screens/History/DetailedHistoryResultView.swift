@@ -40,7 +40,7 @@ struct DetailedHistoryResultView: View {
                 case .back:
                     dismiss()
                 case .copy:
-                    UIPasteboard.general.string = detailedHistory.result
+                    copyToClipboard()
                 }
             }
 
@@ -62,7 +62,7 @@ struct DetailedHistoryResultView: View {
 
 extension DetailedHistoryResultView {
     
-    var footer: some View {
+    private var footer: some View {
         
         ZStack {
             
@@ -85,5 +85,14 @@ extension DetailedHistoryResultView {
             LinearGradient(stops: [Gradient.Stop(color: .background.primary, location: 0.6), Gradient.Stop(color: .clear, location: 0.3)], startPoint: .top, endPoint: .bottom)
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+    }
+    
+    private func copyToClipboard() {
+        
+        let haptics = UIImpactFeedbackGenerator(style: .medium)
+
+        UIPasteboard.general.string = detailedHistory.result
+        
+        haptics.impactOccurred(intensity: 0.7)
     }
 }
