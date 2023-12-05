@@ -69,7 +69,7 @@ extension HistoryView {
                     ForEach(history.items, id: \.uneditedItem) { item in
                         
                         NavigationLink {
-                            EditHistoryView(editHistoryItem: item)
+                            EditHistoryView(currentModalPresentationDetent: $currentModalPresentationDetent, editHistoryItem: item)
                         } label: {
                             HistoryCellView(history: item)
                         }
