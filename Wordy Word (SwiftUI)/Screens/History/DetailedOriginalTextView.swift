@@ -32,10 +32,14 @@ struct DetailedOriginalTextView: View {
                     .padding(.vertical, 105)
             }
             
-            DetailedHistoryNavigationBarButtonsView {
-                dismiss()
-            } onCopyButtonPress: {
-                UIPasteboard.general.string = originalText
+            DetailedHistoryNavigationBarButtonsView { action in
+                
+                switch action {
+                case .back:
+                    dismiss()
+                case .copy:
+                    UIPasteboard.general.string = originalText
+                }
             }
 
             footer

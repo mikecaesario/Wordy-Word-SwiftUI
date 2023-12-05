@@ -33,10 +33,15 @@ struct DetailedHistoryResultView: View {
                     .padding(.vertical, 105)
             }
             
-            DetailedHistoryNavigationBarButtonsView {
-                dismiss()
-            } onCopyButtonPress: {
-                UIPasteboard.general.string = detailedHistory.result
+            DetailedHistoryNavigationBarButtonsView { action in
+               
+                switch action {
+                    
+                case .back:
+                    dismiss()
+                case .copy:
+                    UIPasteboard.general.string = detailedHistory.result
+                }
             }
 
             footer

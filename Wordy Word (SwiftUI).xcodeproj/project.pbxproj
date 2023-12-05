@@ -20,6 +20,9 @@
 		934362932B1B85D300216F1E /* DefaultPillButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362922B1B85D300216F1E /* DefaultPillButtonView.swift */; };
 		934362952B1F387200216F1E /* EditorMenuItemGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362942B1F387200216F1E /* EditorMenuItemGrid.swift */; };
 		934362972B1F38E500216F1E /* EditingStyleCircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362962B1F38E500216F1E /* EditingStyleCircularButton.swift */; };
+		9343629A2B1F69BC00216F1E /* EditedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934362992B1F69BC00216F1E /* EditedItemCell.swift */; };
+		9343629C2B1F6A0A00216F1E /* EditHistoryNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9343629B2B1F6A0A00216F1E /* EditHistoryNavigationBar.swift */; };
+		9343629F2B1F735D00216F1E /* NavigationBarCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9343629E2B1F735D00216F1E /* NavigationBarCircleButton.swift */; };
 		935BFB7C2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BFB7B2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift */; };
 		935BFB7E2AE6B3AB0090465C /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BFB7D2AE6B3AB0090465C /* TextEditorView.swift */; };
 		935BFB802AE6B3AC0090465C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935BFB7F2AE6B3AC0090465C /* Assets.xcassets */; };
@@ -73,6 +76,9 @@
 		934362922B1B85D300216F1E /* DefaultPillButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPillButtonView.swift; sourceTree = "<group>"; };
 		934362942B1F387200216F1E /* EditorMenuItemGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorMenuItemGrid.swift; sourceTree = "<group>"; };
 		934362962B1F38E500216F1E /* EditingStyleCircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingStyleCircularButton.swift; sourceTree = "<group>"; };
+		934362992B1F69BC00216F1E /* EditedItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditedItemCell.swift; sourceTree = "<group>"; };
+		9343629B2B1F6A0A00216F1E /* EditHistoryNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHistoryNavigationBar.swift; sourceTree = "<group>"; };
+		9343629E2B1F735D00216F1E /* NavigationBarCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarCircleButton.swift; sourceTree = "<group>"; };
 		935BFB782AE6B3AB0090465C /* Wordy Word (SwiftUI).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wordy Word (SwiftUI).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		935BFB7B2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordy_Word__SwiftUI_App.swift; sourceTree = "<group>"; };
 		935BFB7D2AE6B3AB0090465C /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
@@ -137,6 +143,8 @@
 		934362982B1F699300216F1E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				934362992B1F69BC00216F1E /* EditedItemCell.swift */,
+				9343629E2B1F735D00216F1E /* NavigationBarCircleButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -329,12 +337,12 @@
 		93B7C03E2AF941FA0097CB00 /* History */ = {
 			isa = PBXGroup;
 			children = (
-				934362982B1F699300216F1E /* Components */,
 				93B7C03C2AF941F60097CB00 /* HistoryView.swift */,
 				93B7C0462AFBF5640097CB00 /* EditHistoryView.swift */,
 				93B7C04C2AFCF4F20097CB00 /* DetailedHistoryResultView.swift */,
 				93B7C04E2AFD2B7C0097CB00 /* DetailedOriginalTextView.swift */,
 				93B7C0432AFBF08F0097CB00 /* Custom View */,
+				934362982B1F699300216F1E /* Components */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -345,6 +353,7 @@
 				934362802B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift */,
 				93B7C03F2AF9713A0097CB00 /* NavigationTitleView.swift */,
 				93B7C0442AFBF0BE0097CB00 /* HistoryCellView.swift */,
+				9343629B2B1F6A0A00216F1E /* EditHistoryNavigationBar.swift */,
 			);
 			path = "Custom View";
 			sourceTree = "<group>";
@@ -452,6 +461,7 @@
 				9343628D2B1B405400216F1E /* PillButtonImageWithText.swift in Sources */,
 				9343628B2B1B3DE300216F1E /* PillLabelWithStroke.swift in Sources */,
 				935BFBA32AE837620090465C /* GetViewSizeViewModifier.swift in Sources */,
+				9343629A2B1F69BC00216F1E /* EditedItemCell.swift in Sources */,
 				93B7C03B2AF606150097CB00 /* RemoveButtonStackView.swift in Sources */,
 				935BFBAD2AE95B9F0090465C /* Color+Ext.swift in Sources */,
 				934362892B1B3D5500216F1E /* NavigationBarCircleButtonView.swift in Sources */,
@@ -460,6 +470,7 @@
 				934362812B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift in Sources */,
 				93B7C0552B02A0AD0097CB00 /* CustomSlider.swift in Sources */,
 				935BFB952AE824980090465C /* HistoryModel.swift in Sources */,
+				9343629C2B1F6A0A00216F1E /* EditHistoryNavigationBar.swift in Sources */,
 				935BFB7C2AE6B3AB0090465C /* Wordy_Word__SwiftUI_App.swift in Sources */,
 				935BFB8E2AE814E00090465C /* AppViewModel.swift in Sources */,
 				935BFBAF2AE9625B0090465C /* String+Ext.swift in Sources */,
@@ -476,6 +487,7 @@
 				935BFB9A2AE829340090465C /* TextEditorManager.swift in Sources */,
 				934362832B15E2B600216F1E /* ReplaceTextfieldViewModifier.swift in Sources */,
 				93B7C0522AFD44180097CB00 /* SettingsView.swift in Sources */,
+				9343629F2B1F735D00216F1E /* NavigationBarCircleButton.swift in Sources */,
 				935BFB9C2AE829590090465C /* TextEditorErrorEnum.swift in Sources */,
 				934362972B1F38E500216F1E /* EditingStyleCircularButton.swift in Sources */,
 				934362852B1A666400216F1E /* AnyTransition+Ext.swift in Sources */,

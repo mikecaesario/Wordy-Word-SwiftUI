@@ -14,8 +14,7 @@ import SwiftUI
 
 struct DetailedHistoryNavigationBarButtonsView: View {
     
-    let onBackButtonPress: () -> ()
-    let onCopyButtonPress: () -> ()
+    let onButtonPress: (NavigationBarButtonEnum) -> ()
     
     @State private var viewSize: CGSize = .zero
     
@@ -29,7 +28,7 @@ struct DetailedHistoryNavigationBarButtonsView: View {
             HStack {
                 
                 Button {
-                    onBackButtonPress()
+                    onButtonPress(.back)
                 } label: {
                     NavigationBarCircleButton(symbolName: "chevron.left")
                 }
@@ -38,7 +37,7 @@ struct DetailedHistoryNavigationBarButtonsView: View {
                 Spacer()
                 
                 Button {
-                    onCopyButtonPress()
+                    onButtonPress(.copy)
                     animateCopyButton()
                 } label: {
                     copyButton
@@ -58,14 +57,22 @@ struct DetailedHistoryNavigationBarButtonsView: View {
 
 #Preview {
     
-    DetailedHistoryNavigationBarButtonsView {
+    DetailedHistoryNavigationBarButtonsView { bar in
         
-    } onCopyButtonPress: {
-        
+        switch bar {
+        case .back:
+            break
+        case .copy:
+            break
+        }
     }
 }
 
 extension DetailedHistoryNavigationBarButtonsView {
+    
+    public enum NavigationBarButtonEnum {
+        case back, copy
+    }
     
     private var copyButton: some View {
         
