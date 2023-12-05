@@ -14,6 +14,8 @@ import SwiftUI
 
 struct HistoryView: View {
     
+    @Binding var currentModalPresentationDetent: PresentationDetent
+    
     let historyData: [HistoryItems]
     
     var body: some View {
@@ -35,13 +37,16 @@ struct HistoryView: View {
             .background(Color.background.primary)
             .navigationBarHidden(true)
         }
+        .onDisappear {
+            self.currentModalPresentationDetent = .medium
+        }
     }
 }
 
 #Preview {
     
     let data = MockViewModel.previewData
-    return HistoryView(historyData: data)
+    return HistoryView(currentModalPresentationDetent: .constant(.large), historyData: data)
 }
 
 extension HistoryView {

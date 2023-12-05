@@ -15,7 +15,8 @@ import SwiftUI
 struct EditHistoryView: View {
     
     @Environment(\.dismiss) var dismiss
-    
+    @Binding var currentModalPresentationDetent: PresentationDetent
+
     let editHistoryItem: EditHistoryItem
     
     var body: some View {
@@ -64,13 +65,16 @@ struct EditHistoryView: View {
         .navigationBarHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background.primary)
+        .onAppear {
+            self.currentModalPresentationDetent = .large
+        }
     }
 }
 
 #Preview {
     
     let data = MockViewModel.previewData[0].items[0]
-    return EditHistoryView(editHistoryItem: data)
+    return EditHistoryView(currentModalPresentationDetent: .constant(.large), editHistoryItem: data)
 }
 
 struct EditedItemCell: View {

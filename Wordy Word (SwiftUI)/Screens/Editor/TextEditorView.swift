@@ -19,6 +19,7 @@ struct TextEditorView: View {
     @StateObject private var viewModel: AppViewModel
     
     @FocusState private var isFocused: whichTextfieldOrTextEditorIsFocused?
+    @State private var currentModalPresentationDetent: PresentationDetent = .medium
     
     init(historyDataManager: HistoryDataManagerProtocol, textEditorManager: TextEditorManagerProtocol) {
 
@@ -94,8 +95,8 @@ struct TextEditorView: View {
                 switch modal {
                 case .history:
                     
-                    HistoryView(historyData: viewModel.historyData)
-                        .presentationDetents([.medium, .large])
+                    HistoryView(currentModalPresentationDetent: $currentModalPresentationDetent, historyData: viewModel.historyData)
+                        .presentationDetents([.medium, .large], selection: $currentModalPresentationDetent)
                         .presentationBackgroundInteraction(.disabled)
                         .presentationCornerRadius(40)
                         .presentationDragIndicator(.hidden)
