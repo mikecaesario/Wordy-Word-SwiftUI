@@ -39,7 +39,6 @@ extension Color {
     struct text {
         static let editor = Color("EditorTextColor")
         static let white = Color("WhiteTextColor")
-        static let placeholder = Color("PlaceholderTextColor")
         static let black = Color("BlackTextColor")
         static let grey = Color("GreyTextColor")
     }

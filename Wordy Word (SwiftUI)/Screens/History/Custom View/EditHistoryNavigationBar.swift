@@ -35,7 +35,7 @@ struct EditHistoryNavigationBar: View {
         .frame(height: 100)
         .getViewSize($viewSize)
         .background(
-            LinearGradient(stops: [Gradient.Stop(color: .clear, location: 1.0), Gradient.Stop(color: .background.primary, location: 0.6)], startPoint: .top, endPoint: .bottom)
+            LinearGradient(stops: [Gradient.Stop(color: .background.primary, location: 0.6), Gradient.Stop(color: .clear, location: 1.0) ], startPoint: .top, endPoint: .bottom)
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }

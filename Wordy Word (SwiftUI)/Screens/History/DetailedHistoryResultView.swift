@@ -79,10 +79,11 @@ extension DetailedHistoryResultView {
             .foregroundStyle(Color.text.white)
             
         }
-        .frame(maxWidth: .infinity, maxHeight: 100)
+        .frame(height: 20)
+        .frame(maxWidth: .infinity)
         .padding()
         .background(
-            LinearGradient(stops: [Gradient.Stop(color: .background.primary, location: 0.6), Gradient.Stop(color: .clear, location: 0.3)], startPoint: .top, endPoint: .bottom)
+            LinearGradient(stops: [Gradient.Stop(color: .clear, location: 0.3), Gradient.Stop(color: .background.primary, location: 0.6)], startPoint: .top, endPoint: .bottom)
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
     }

@@ -14,8 +14,8 @@ import Foundation
 
 protocol HistoryDataManagerProtocol {
     func fetchHistoryItemsFromJSON() -> [HistoryItems]
-    func saveHistoryItemsToJSON(history: [HistoryItems]?, withLimit: Int)
-    func didFinishEditingNowAppendingHistoryItem(history: [HistoryItems], editingText: String, editingResult: String, editingStyle: EditingStyleEnum) -> [HistoryItems]
+    func writeHistoryItemsToJSON(history: [HistoryItems]?)
+    func didFinishEditingNowAppendingHistoryItem(history: [HistoryItems], editingText: String, editingResult: String, editingStyle: EditingStyleEnum, withLimit: Int) -> [HistoryItems]
 }
 
 class HistoryDataManager: HistoryDataManagerProtocol {
@@ -42,25 +42,23 @@ class HistoryDataManager: HistoryDataManagerProtocol {
         }
     }
     
-    func saveHistoryItemsToJSON(history: [HistoryItems]?, withLimit: Int) {
+    func writeHistoryItemsToJSON(history: [HistoryItems]?) {
         
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first, let history = history else { return }
         let fileUrl = url.appendingPathComponent(fileName)
-        
-        let items = Array(history.suffix(withLimit))
-        
+                
         do {
             let encoder = JSONEncoder()
-            let data = try encoder.encode(items)
+            let data = try encoder.encode(history)
             try data.write(to: fileUrl)
         } catch {
             
         }
     }
     
-    func didFinishEditingNowAppendingHistoryItem(history: [HistoryItems], editingText: String, editingResult: String, editingStyle: EditingStyleEnum) -> [HistoryItems] {
+    func didFinishEditingNowAppendingHistoryItem(history: [HistoryItems], editingText: String, editingResult: String, editingStyle: EditingStyleEnum, withLimit: Int) -> [HistoryItems] {
                 
-        var history = history
+        var history = Array(history.suffix(withLimit))
         let currentDate = Date()
         
         if let matchingDate = history.firstIndex(where: { currentDate.isSameDayAs(otherDate: $0.date) }) {

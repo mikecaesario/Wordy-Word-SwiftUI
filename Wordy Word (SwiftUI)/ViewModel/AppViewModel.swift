@@ -122,7 +122,7 @@ final class AppViewModel: ObservableObject {
 
             textResult = result
             
-            historyData = historyDataManager.didFinishEditingNowAppendingHistoryItem(history: historyData, editingText: editingText, editingResult: result, editingStyle: style)
+            historyData = historyDataManager.didFinishEditingNowAppendingHistoryItem(history: historyData, editingText: editingText, editingResult: result, editingStyle: style, withLimit: maxHistoryDataLimit)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { [weak self] in
                 
@@ -130,7 +130,7 @@ final class AppViewModel: ObservableObject {
                 self.showResultView = true
             }
             
-            historyDataManager.saveHistoryItemsToJSON(history: historyData, withLimit: maxHistoryDataLimit)
+            historyDataManager.writeHistoryItemsToJSON(history: historyData)
             
             haptics.impactOccurred()
             

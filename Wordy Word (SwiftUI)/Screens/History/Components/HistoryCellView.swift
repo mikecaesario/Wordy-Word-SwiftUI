@@ -29,12 +29,13 @@ struct HistoryCellView: View {
                     .foregroundStyle(Color.text.white)
                     .multilineTextAlignment(.leading)
                     .lineLimit(7)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .frame(maxWidth: .infinity)
             .padding()
             .getViewSize($cellSize)
             .background(
-                RoundedRectangle(cornerRadius: cellSize.height / 8)
+                RoundedRectangle(cornerRadius: cellSize.height / 7)
                     .foregroundStyle(Color.background.thirtiary)
             )
     }

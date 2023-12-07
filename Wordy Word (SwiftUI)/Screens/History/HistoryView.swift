@@ -55,7 +55,7 @@ extension HistoryView {
         
         ScrollView(.vertical, showsIndicators: false) {
             
-            LazyVStack {
+            LazyVStack(spacing: 15) {
                 
                 ForEach(historyData, id: \.date) { history in
                     

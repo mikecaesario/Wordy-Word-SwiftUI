@@ -26,8 +26,9 @@ struct TextResultCapsuleView: View {
                 
                 Text(viewModel.textResult)
                     .font(Font.custom(.fonts.poppinsSemiBold, size: 28))
-                    .multilineTextAlignment(.leading)
                     .foregroundStyle(Color.text.white)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding([.bottom, .horizontal], 25)
                     .padding(.top, 85)
             }

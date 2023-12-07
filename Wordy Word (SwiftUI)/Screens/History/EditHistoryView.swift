@@ -25,7 +25,7 @@ struct EditHistoryView: View {
             
             ScrollView(.vertical, showsIndicators: true) {
                 
-                LazyVStack(spacing: 20) {
+                LazyVStack(spacing: 15) {
                     
                     Text("Original")
                         .historyHeaderStyle()
@@ -40,6 +40,7 @@ struct EditHistoryView: View {
                             .foregroundStyle(Color.text.white)
                             .multilineTextAlignment(.leading)
                             .lineLimit(10)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     
                     Text(editHistoryItem.result.count > 1 ? "Edits" : "Edit")
@@ -66,7 +67,11 @@ struct EditHistoryView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background.primary)
         .onAppear {
-            self.currentModalPresentationDetent = .large
+
+            // added to tackle a weird bug; half of the modal is blocked by a grey view when changing detents on view appear
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.currentModalPresentationDetent = .large
+            }
         }
     }
 }

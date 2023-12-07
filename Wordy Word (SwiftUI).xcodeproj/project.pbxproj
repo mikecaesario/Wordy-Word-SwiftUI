@@ -143,6 +143,7 @@
 		934362982B1F699300216F1E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				93B7C0442AFBF0BE0097CB00 /* HistoryCellView.swift */,
 				934362992B1F69BC00216F1E /* EditedItemCell.swift */,
 				9343629E2B1F735D00216F1E /* NavigationBarCircleButton.swift */,
 			);
@@ -352,7 +353,6 @@
 			children = (
 				934362802B150C0F00216F1E /* DetailedHistoryNavigationBarButtonsView.swift */,
 				93B7C03F2AF9713A0097CB00 /* NavigationTitleView.swift */,
-				93B7C0442AFBF0BE0097CB00 /* HistoryCellView.swift */,
 				9343629B2B1F6A0A00216F1E /* EditHistoryNavigationBar.swift */,
 			);
 			path = "Custom View";
