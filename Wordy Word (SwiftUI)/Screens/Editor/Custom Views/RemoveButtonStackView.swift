@@ -64,20 +64,22 @@ extension RemoveButtonStackView {
     private func addOrRemoveSelectedCharacterFromTheArray(char: String) {
         
         // Check if the character already existed in the array
-        if temporaryRemoveCharacterArrayInput.contains(char) {
+        if viewModel.removeCharacterArray.contains(char) {
             
             // Get the exact index of the selected character from the array
-            if let index = temporaryRemoveCharacterArrayInput.firstIndex(of: char) {
+            if let index = viewModel.removeCharacterArray.firstIndex(of: char) {
                 
                 // Remove it from the array
-                temporaryRemoveCharacterArrayInput.remove(at: index)
+                viewModel.removeCharacterArray.remove(at: index)
             }
             
         } else {
             
             // If the character didn't exist, add it to the array
-            temporaryRemoveCharacterArrayInput.append(char)
+            viewModel.removeCharacterArray.append(char)
         }
+        
+        viewModel.beginEditingText()
     }
 }
 

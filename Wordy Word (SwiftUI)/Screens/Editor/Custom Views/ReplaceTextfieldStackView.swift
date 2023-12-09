@@ -76,6 +76,7 @@ extension ReplaceTextfieldStackView {
             isFocused = nil
             viewModel.replaceWithText = temporaryInputForReplaceWith
             viewModel.findText = temporaryInputForFindText
+            viewModel.beginEditingText()
         }
     }
 }

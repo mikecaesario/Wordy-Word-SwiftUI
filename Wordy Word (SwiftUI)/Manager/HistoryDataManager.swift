@@ -48,11 +48,12 @@ class HistoryDataManager: HistoryDataManagerProtocol {
         let fileUrl = url.appendingPathComponent(fileName)
                 
         do {
+            
             let encoder = JSONEncoder()
             let data = try encoder.encode(history)
             try data.write(to: fileUrl)
         } catch {
-            
+            fatalError("ERROR: ERROR WRITING HISTORY DATA TO FILE MANAGER")
         }
     }
     

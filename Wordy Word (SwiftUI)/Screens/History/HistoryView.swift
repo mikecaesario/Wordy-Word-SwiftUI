@@ -76,6 +76,7 @@ extension HistoryView {
                     }
                 }
             }
+            .padding(.bottom, 20)
             .padding(.horizontal, 18)
             .padding(.top, 105)
         }

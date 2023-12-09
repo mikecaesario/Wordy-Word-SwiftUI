@@ -13,9 +13,7 @@
 import SwiftUI
 
 struct TextEditorView: View {
-    
-    @Environment(\.scenePhase) private var scenePhase
-    
+        
     @StateObject private var viewModel: AppViewModel
     
     @FocusState private var isFocused: whichTextfieldOrTextEditorIsFocused?
@@ -81,11 +79,14 @@ struct TextEditorView: View {
                 
                 TabBarView()
                 
+                toastView
+                
                 editorStylePicker
                 
             }
             .onTapGesture {
                 isFocused = nil
+                viewModel.showToast.toggle()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background.primary.ignoresSafeArea())
@@ -95,7 +96,7 @@ struct TextEditorView: View {
                 switch modal {
                 case .history:
                     
-                    HistoryView(currentModalPresentationDetent: $currentModalPresentationDetent, historyData: viewModel.historyData)
+                    HistoryView(currentModalPresentationDetent: $currentModalPresentationDetent, historyData: viewModel.historyDataArray)
                         .presentationDetents([.medium, .large], selection: $currentModalPresentationDetent)
                         .presentationBackgroundInteraction(.disabled)
                         .presentationCornerRadius(40)
@@ -110,19 +111,6 @@ struct TextEditorView: View {
                 }
             }
             .environmentObject(viewModel)
-            .onChange(of: scenePhase) { phase in
-                
-                switch phase {
-                case .background:
-                    break
-                case .inactive:
-                    break
-                case .active:
-                    break
-                @unknown default:
-                    break
-                }
-            }
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
@@ -136,9 +124,9 @@ struct TextEditorView: View {
 
 extension TextEditorView {
     
-    var editorStylePicker: some View {
+    private var editorStylePicker: some View {
         
-        ZStack{
+        ZStack {
             
             if viewModel.showEditorStylePicker {
 
@@ -146,9 +134,57 @@ extension TextEditorView {
                     .transition(.opacity)
             }
         }
-        .animation(.default, value: viewModel.showEditorStylePicker)
+    }
+    
+    private var toastView: some View {
+        
+        ZStack {
+            
+//            if viewModel.showToast {
+//                
+//                
+//            }
+            
+            if viewModel.showToast {
+                
+                ToastView()
+                    .transition(.move(edge: .bottom))
+            }
+        }
+        .animation(.linear(duration: 1.0), value: viewModel.showToast)
     }
 }
 
-
+struct ToastView: View {
+    
+    @EnvironmentObject var viewModel: AppViewModel
+    
+    var body: some View {
+        
+        ZStack {
+            
+            HStack(spacing: 10) {
+                
+                Image(systemName: viewModel.toastImage)
+                    .aspectRatio(1, contentMode: .fit)
+                    .foregroundStyle(Color.text.white.opacity(0.5))
+                    .font(.system(size: 35))
+                
+                Text(viewModel.toastMessage)
+                    .font(.system(size: 16))
+                    .foregroundStyle(Color.text.white)
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(
+                Capsule()
+                    .fill(Color.pink)
+            )
+            .padding(.horizontal)
+//            .padding(.bottom)
+            
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+    }
+}
 

@@ -98,7 +98,9 @@ extension TextEditorCapsuleView {
                                         onSuccessBackgroundColor: .background.quarternary,
                                         strokeColor: .text.black) {
                     
-                    viewModel.pasteFromClipboard()
+                    viewModel.pasteFromClipboard() { completion in
+                        
+                    }
                 }
                 
                 PillLabelWithStroke(count: viewModel.editingTextCharacterCount, text: viewModel.editingTextCharacterCount > 1 ? "Characters" : "Character", textColor: .text.black, backgroundColor: .background.quarternary, borderColor: .text.black)

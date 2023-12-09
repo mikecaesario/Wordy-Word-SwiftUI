@@ -17,7 +17,6 @@ struct HistoryCellView: View {
     let history: EditHistoryItem
     
     @State private var cellSize: CGSize = .zero
-    @State private var cellHeight: CGFloat = 0
     
     var body: some View {
         
@@ -35,7 +34,8 @@ struct HistoryCellView: View {
             .padding()
             .getViewSize($cellSize)
             .background(
-                RoundedRectangle(cornerRadius: cellSize.height / 7)
+                
+                RoundedRectangle(cornerRadius: 30, style: .circular)
                     .foregroundStyle(Color.background.thirtiary)
             )
     }

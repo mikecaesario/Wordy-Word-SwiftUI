@@ -13,12 +13,12 @@
 import Foundation
 
 protocol TextEditorManagerProtocol {
-    func startEditText(text: String?, editingStyle: EditingStyleEnum?, remove: [String]?, find: String?, replace: String?) throws -> String
+    func startEditText(text: String?, editingStyle: EditingStyleEnum?, remove: [String], find: String, replace: String) throws -> String
 }
 
 class TextEditorManager: TextEditorManagerProtocol {
     
-    func startEditText(text: String?, editingStyle: EditingStyleEnum?, remove: [String]?, find: String?, replace: String?) throws -> String {
+    func startEditText(text: String?, editingStyle: EditingStyleEnum?, remove: [String], find: String, replace: String) throws -> String {
         
         guard let text = text, text != "" else { throw EditingTextError.noTextInput }
 
@@ -28,23 +28,25 @@ class TextEditorManager: TextEditorManagerProtocol {
         
         switch style {
         case .capitalize:
-            result = text.capitalized
+//            result = text.capitalized // sentence
+            result = text.capitalizeSentences() // capitalize
         case .title:
-            result = text.capitalizeSentences()
+//            result = text.capitalizeSentences() // capitalize
+            result = text.capitalizeFirstLetterExceptCommonWordsThenFirstLetterOfFirstWord()
         case .upper:
             result = text.uppercased()
         case .lower:
             result = text.lowercased()
         case .replace:
             
-            guard let find = find else { throw EditingTextError.findTextIsEmpty }
+            guard !find.isEmpty else { throw EditingTextError.findTextIsEmpty }
             
-            guard let replace = replace else { throw EditingTextError.replaceTextIsEmpty }
+            guard !replace.isEmpty else { throw EditingTextError.replaceTextIsEmpty }
             
             result = text.replaceCharacter(find: find, replaceWith: replace)
         case .remove:
             
-            guard let remove = remove else { throw EditingTextError.removeIsEmpty }
+            guard !remove.isEmpty else { throw EditingTextError.removeIsEmpty }
 
             result = text.removeCharacter(remove: remove)
         case .reverse:

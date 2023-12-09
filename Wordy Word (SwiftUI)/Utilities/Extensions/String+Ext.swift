@@ -73,6 +73,49 @@ extension String {
         return capitalizedSentences.joined(separator: ". ")
     }
     
+    func capitalizeFirstLetterExceptCommonWordsThenFirstLetterOfFirstWord() -> String {
+            let commonWords = Set(["and", "as", "but", "for", "if", "nor", "or", "so", "yet",
+                                   "a", "an", "the", "as", "is", "at", "by", "for", "in", "of", "off",
+                                   "on", "per", "to", "up", "via"])
+            
+            let words = self.lowercased().components(separatedBy: " ")
+            let capitalizedWords = words.map { word -> String in
+                if commonWords.contains(word) {
+                    return word
+                } else {
+                    return word.prefix(1).capitalized + word.dropFirst()
+                }
+            }
+            
+            var result = capitalizedWords.joined(separator: " ")
+            
+            // Capitalize only the first letter of the first word
+            if let firstWord = capitalizedWords.first {
+                result = firstWord.prefix(1).capitalized + firstWord.dropFirst() + " " + capitalizedWords.dropFirst().joined(separator: " ")
+            }
+            
+            return result
+        }
+    
+    func capitalizeFirstLetterExceptCommosnWords() -> String {
+        let commonWords = Set(["and", "as", "but", "for", "if", "nor", "or", "so", "yet",
+                               "a", "an", "the", "as", "is", "at", "by", "for", "in", "of", "off",
+                               "on", "per", "to", "up", "via"])
+        
+        let words = self.lowercased().components(separatedBy: " ")
+        
+        let capitalizedWords = words.map { word -> String in
+            
+            if commonWords.contains(word) {
+                return word
+            } else {
+                return word.prefix(1).capitalized + word.dropFirst()
+            }
+        }
+        
+        return capitalizedWords.joined(separator: " ")
+    }
+    
     func paragraphsCount() -> Int {
 
         let paragraphs = self.components(separatedBy: "\n\n")

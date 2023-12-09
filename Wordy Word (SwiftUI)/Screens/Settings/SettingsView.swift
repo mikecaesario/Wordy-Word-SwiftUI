@@ -43,6 +43,9 @@ struct SettingsView: View {
         }
         .background(Color.background.primary)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onDisappear {
+            viewModel.removeExcessHistoryDataIfNeeded()
+        }
     }
 }
 

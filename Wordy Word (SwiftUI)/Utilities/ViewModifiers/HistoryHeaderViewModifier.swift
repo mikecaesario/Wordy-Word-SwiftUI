@@ -19,7 +19,7 @@ struct HistoryHeaderViewModifier: ViewModifier {
         
         content
             .font(.custom(.fonts.poppinsMedium, size: 20))
-            .foregroundStyle(Color.text.grey)
+            .foregroundStyle(Color.text.white)
             .lineLimit(1)
             .minimumScaleFactor(0.7)
             .frame(maxWidth: .infinity, alignment: .leading)

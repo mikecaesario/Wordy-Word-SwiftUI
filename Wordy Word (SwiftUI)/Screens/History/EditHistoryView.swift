@@ -57,6 +57,7 @@ struct EditHistoryView: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 105)
+                .padding(.bottom, 20)
             }
             
             EditHistoryNavigationBar(symbolName: "chevron.left") {

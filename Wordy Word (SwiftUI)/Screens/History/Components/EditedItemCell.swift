@@ -51,7 +51,7 @@ struct EditedItemCell: View {
         .padding()
         .getViewSize($viewSize)
         .background(
-            RoundedRectangle(cornerRadius: viewSize.height / 7)
+            RoundedRectangle(cornerRadius: 30)
                 .foregroundStyle(Color.background.thirtiary)
         )
     }

@@ -19,7 +19,7 @@ public enum whichTextfieldOrTextEditorIsFocused {
 
 final class AppViewModel: ObservableObject {
     
-    @Published var historyData: [HistoryItems] = []
+    @Published var historyDataArray: [HistoryItems] = []
     
     @Published var editingStyle: EditingStyleEnum? {
         didSet {
@@ -40,9 +40,9 @@ final class AppViewModel: ObservableObject {
         }
     }
         
-    @Published var findText: String? = nil { didSet { beginEditingText() } }
-    @Published var replaceWithText: String? = nil { didSet { beginEditingText() } }
-    @Published var removeCharacterArray: [String]? = nil { didSet { beginEditingText() } }
+    @Published var findText: String = ""
+    @Published var replaceWithText: String = ""
+    @Published var removeCharacterArray: [String] = []
     
     @Published private(set) var editingTextCharacterCount = 0
     @Published private(set) var editingTextWordCount = 0
@@ -60,6 +60,10 @@ final class AppViewModel: ObservableObject {
     @Published var showRemoveButtonStack = false 
     
     @Published var showTabBarModal: TabBarModalEnum?
+    
+    @Published var showToast = false
+    @Published private(set) var toastImage = "exclamationmark.triangle.fill"
+    @Published private(set) var toastMessage = "There are no item to be pasted from the clipboard"
         
     @AppStorage("maxHistoryLimit") var maxHistoryDataLimit: Int = 5
     
@@ -73,7 +77,7 @@ final class AppViewModel: ObservableObject {
         self.historyDataManager = historyDataManager
         self.textEditorManager = textEditorManager
                 
-        self.historyData = historyDataManager.fetchHistoryItemsFromJSON()
+        self.historyDataArray = historyDataManager.fetchHistoryItemsFromJSON()
     }
 
     private func calculateUneditedText() {
@@ -95,17 +99,26 @@ final class AppViewModel: ObservableObject {
     func copyResultToClipboard() {
         
         UIPasteboard.general.string = textResult
+        showToast(withImage: "checkmark", andMessage: "Text successfully copied!")
     }
     
-    func pasteFromClipboard() {
+    func pasteFromClipboard(onCompletion: (Bool) -> ()) {
         
-        if UIPasteboard.general.hasStrings {
+        guard let pasteboardData = UIPasteboard.general.string else {
             
-            if let pasteBoardText = UIPasteboard.general.string {
-                
-                editingText = pasteBoardText
-            }
+            return
         }
+        
+        if pasteboardData != " " || pasteboardData != ""  {
+            
+            editingText = pasteboardData
+            onCompletion(true)
+            beginEditingText()
+        } else {
+            
+            showToast(withImage: "exclamationmark.triangle.fill", andMessage: "There are no item to be pasted from the clipboard")
+        }
+        
     }
     
     func beginEditingText() {
@@ -122,7 +135,7 @@ final class AppViewModel: ObservableObject {
 
             textResult = result
             
-            historyData = historyDataManager.didFinishEditingNowAppendingHistoryItem(history: historyData, editingText: editingText, editingResult: result, editingStyle: style, withLimit: maxHistoryDataLimit)
+            historyDataArray = historyDataManager.didFinishEditingNowAppendingHistoryItem(history: historyDataArray, editingText: editingText, editingResult: result, editingStyle: style, withLimit: maxHistoryDataLimit)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { [weak self] in
                 
@@ -130,22 +143,33 @@ final class AppViewModel: ObservableObject {
                 self.showResultView = true
             }
             
-            historyDataManager.writeHistoryItemsToJSON(history: historyData)
+            historyDataManager.writeHistoryItemsToJSON(history: historyDataArray)
             
             haptics.impactOccurred()
             
         } catch(let error as EditingTextError) {
             
             switch error {
+                
             case .findTextIsEmpty, .replaceTextIsEmpty, .removeIsEmpty:
+                
                 self.showResultView = false
             default:
+                
                 break
             }
             
         } catch {
             
+            showToast(withImage: "exclamationmark.triangle.fill", andMessage: "Whoops! Something went wrong, please try again later")
         }
+    }
+    
+    private func showToast(withImage: String, andMessage: String) {
+        
+        toastImage = withImage
+        toastMessage = andMessage
+        showToast = true
     }
     
     private func showViewIfNeeded(style: EditingStyleEnum?) {
@@ -155,20 +179,27 @@ final class AppViewModel: ObservableObject {
             
             showReplaceTextfield = true
             showRemoveButtonStack = false
-            removeCharacterArray = nil
+            removeCharacterArray = []
         case .remove:
             
             showReplaceTextfield = false
             showRemoveButtonStack = true
-            replaceWithText = nil
-            findText = nil
+            replaceWithText = ""
+            findText = ""
         default:
             
             showReplaceTextfield = false
             showRemoveButtonStack = false
-            removeCharacterArray = nil
-            replaceWithText = nil
-            findText = nil
+            removeCharacterArray = []
+            replaceWithText = ""
+            findText = ""
         }
+    }
+    
+    func removeExcessHistoryDataIfNeeded() {
+        
+        let newChangedLimitHistoryData = historyDataArray.prefix(maxHistoryDataLimit)
+        historyDataArray = Array(newChangedLimitHistoryData)
+        historyDataManager.writeHistoryItemsToJSON(history: historyDataArray)
     }
 }
