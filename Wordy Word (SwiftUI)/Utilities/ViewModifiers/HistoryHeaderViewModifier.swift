@@ -10,7 +10,6 @@
 //  LinkedIn: https://www.linkedin.com/in/mikecaesario/
 //
 
-import Foundation
 import SwiftUI
 
 struct HistoryHeaderViewModifier: ViewModifier {

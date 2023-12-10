@@ -79,14 +79,12 @@ struct TextEditorView: View {
                 
                 TabBarView()
                 
-                toastView
-                
                 editorStylePicker
                 
             }
+            .toastView(viewModel.showToast, withType: viewModel.toastType)
             .onTapGesture {
                 isFocused = nil
-                viewModel.showToast.toggle()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background.primary.ignoresSafeArea())
@@ -135,29 +133,13 @@ extension TextEditorView {
             }
         }
     }
-    
-    private var toastView: some View {
-        
-        ZStack {
-            
-//            if viewModel.showToast {
-//                
-//                
-//            }
-            
-            if viewModel.showToast {
-                
-                ToastView()
-                    .transition(.move(edge: .bottom))
-            }
-        }
-        .animation(.linear(duration: 1.0), value: viewModel.showToast)
-    }
 }
 
 struct ToastView: View {
+        
+    let type: ToastType
     
-    @EnvironmentObject var viewModel: AppViewModel
+    @State private var viewSize: CGSize = .zero
     
     var body: some View {
         
@@ -165,26 +147,27 @@ struct ToastView: View {
             
             HStack(spacing: 10) {
                 
-                Image(systemName: viewModel.toastImage)
-                    .aspectRatio(1, contentMode: .fit)
+                Image(systemName: type.symbol)
+                    .aspectRatio(1, contentMode: .fill)
                     .foregroundStyle(Color.text.white.opacity(0.5))
                     .font(.system(size: 35))
                 
-                Text(viewModel.toastMessage)
-                    .font(.system(size: 16))
+                Text(type.message)
+                    .font(.system(size: 17))
                     .foregroundStyle(Color.text.white)
             }
             .padding()
             .frame(maxWidth: .infinity)
+            .frame(minHeight: viewSize.height * 0.12)
             .background(
                 Capsule()
-                    .fill(Color.pink)
+                    .fill(Color.blue)
             )
-            .padding(.horizontal)
-//            .padding(.bottom)
+            .padding(.horizontal, 20)
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        .getViewSize($viewSize)
     }
 }
 

@@ -17,6 +17,34 @@ public enum whichTextfieldOrTextEditorIsFocused {
     case editor, find, replace
 }
 
+public enum ToastType {
+    case paste, copy, error
+    
+    var symbol: String {
+        
+        switch self {
+        case .paste:
+            "exclamationmark.triangle.fill"
+        case .copy:
+            "checkmark"
+        case .error:
+            "exclamationmark.triangle.fill"
+        }
+    }
+    
+    var message: String {
+        
+        switch self {
+        case .paste:
+            "There are no item to be pasted from the clipboard"
+        case .copy:
+            "Text has been successfully copied to clipboard"
+        case .error:
+            "Whoops! Something went wrong, please try again later"
+        }
+    }
+}
+
 final class AppViewModel: ObservableObject {
     
     @Published var historyDataArray: [HistoryItems] = []
@@ -62,8 +90,7 @@ final class AppViewModel: ObservableObject {
     @Published var showTabBarModal: TabBarModalEnum?
     
     @Published var showToast = false
-    @Published private(set) var toastImage = "exclamationmark.triangle.fill"
-    @Published private(set) var toastMessage = "There are no item to be pasted from the clipboard"
+    @Published private(set) var toastType: ToastType = .error
         
     @AppStorage("maxHistoryLimit") var maxHistoryDataLimit: Int = 5
     
@@ -96,13 +123,14 @@ final class AppViewModel: ObservableObject {
         textResultParagraphCount = textResult.count > 1 ? textResult.paragraphsCount() : 0
     }
     
-    func copyResultToClipboard() {
+    func copyResultToClipboard(completion: (Bool) -> ()) {
         
         UIPasteboard.general.string = textResult
-        showToast(withImage: "checkmark", andMessage: "Text successfully copied!")
+        showToast(withType: .copy)
+        completion(true)
     }
     
-    func pasteFromClipboard(onCompletion: (Bool) -> ()) {
+    func pasteFromClipboard(completion: (Bool) -> ()) {
         
         guard let pasteboardData = UIPasteboard.general.string else {
             
@@ -112,13 +140,12 @@ final class AppViewModel: ObservableObject {
         if pasteboardData != " " || pasteboardData != ""  {
             
             editingText = pasteboardData
-            onCompletion(true)
+            completion(true)
             beginEditingText()
         } else {
             
-            showToast(withImage: "exclamationmark.triangle.fill", andMessage: "There are no item to be pasted from the clipboard")
+            showToast(withType: .paste)
         }
-        
     }
     
     func beginEditingText() {
@@ -161,15 +188,23 @@ final class AppViewModel: ObservableObject {
             
         } catch {
             
-            showToast(withImage: "exclamationmark.triangle.fill", andMessage: "Whoops! Something went wrong, please try again later")
+            showToast(withType: .error)
         }
     }
     
-    private func showToast(withImage: String, andMessage: String) {
+    private func showToast(withType: ToastType) {
         
-        toastImage = withImage
-        toastMessage = andMessage
-        showToast = true
+        if !showToast {
+            
+            toastType = withType
+            showToast = true
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+                
+                guard let self = self else { return }
+                self.showToast = false
+            }
+        }
     }
     
     private func showViewIfNeeded(style: EditingStyleEnum?) {

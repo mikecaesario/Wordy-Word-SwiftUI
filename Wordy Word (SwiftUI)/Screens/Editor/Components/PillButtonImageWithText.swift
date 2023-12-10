@@ -14,6 +14,8 @@ import SwiftUI
 
 struct PillButtonImageWithText: View {
     
+    @EnvironmentObject var viewModel: AppViewModel
+    
     let defaultSymbol: String
     let defaultLabel: String
     let labelColor: Color
@@ -25,8 +27,12 @@ struct PillButtonImageWithText: View {
     let onSuccessBackgroundColor: Color
     let strokeColor: Color
     
-    let onButtonPress: () -> ()
+    let type: ButtonType
     
+    public enum ButtonType {
+        case paste, copy
+    }
+        
     @State private var backPillDegree: Double = 90
     @State private var frontPillDegree: Double = 0
     
@@ -53,8 +59,26 @@ struct PillButtonImageWithText: View {
         
         Button {
             
-            onButtonPress()
-            flipButton()
+            switch type {
+            case .paste:
+                
+                viewModel.pasteFromClipboard { success in
+                    
+                    if success {
+                        
+                        flipButton()
+                    }
+                }
+            case .copy:
+                
+                viewModel.copyResultToClipboard { success in
+                    
+                    if success {
+                        
+                        flipButton()
+                    }
+                }
+            }
             
         } label: {
             
@@ -87,7 +111,6 @@ struct PillButtonImageWithText: View {
                             onSuccessLabel: "Pasted",
                             onSuccessLabelColor: .text.black,
                             onSuccessBackgroundColor: .background.quarternary,
-                            strokeColor: .text.black) {
-        
-    }
+                            strokeColor: .text.black, type: .paste)
+    .environmentObject(MockViewModel.shared.viewModel)
 }

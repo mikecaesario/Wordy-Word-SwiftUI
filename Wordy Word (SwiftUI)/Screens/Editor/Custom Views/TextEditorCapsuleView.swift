@@ -34,6 +34,7 @@ struct TextEditorCapsuleView: View {
                 .padding(.bottom, 16)
             
         }
+        .environmentObject(viewModel)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background.quarternary)
         .cornerRadius(50)
@@ -96,12 +97,7 @@ extension TextEditorCapsuleView {
                                         onSuccessLabel: "Pasted",
                                         onSuccessLabelColor: .text.black,
                                         onSuccessBackgroundColor: .background.quarternary,
-                                        strokeColor: .text.black) {
-                    
-                    viewModel.pasteFromClipboard() { completion in
-                        
-                    }
-                }
+                                        strokeColor: .text.black, type: .paste) 
                 
                 PillLabelWithStroke(count: viewModel.editingTextCharacterCount, text: viewModel.editingTextCharacterCount > 1 ? "Characters" : "Character", textColor: .text.black, backgroundColor: .background.quarternary, borderColor: .text.black)
                 

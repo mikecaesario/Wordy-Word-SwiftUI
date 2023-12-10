@@ -18,6 +18,8 @@ struct DetailedHistoryResultView: View {
     
     let detailedHistory: EditHistoryItemResults
     
+    @State private var showToast = false
+    
     var body: some View {
         
         ZStack {
@@ -27,8 +29,10 @@ struct DetailedHistoryResultView: View {
                 Text(detailedHistory.result)
                     .font(.custom(.fonts.poppinsMedium, size: 22))
                     .foregroundStyle(Color.text.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .multilineTextAlignment(.leading)
                     .textSelection(.enabled)
+                    .tint(Color.text.white)
                     .padding(.horizontal)
                     .padding(.vertical, 105)
             }
@@ -46,6 +50,7 @@ struct DetailedHistoryResultView: View {
 
             footer
         }
+        .toastView(showToast, withType: .copy)
         .navigationBarHidden(true)
         .background(
             Color.background.primary
@@ -94,6 +99,12 @@ extension DetailedHistoryResultView {
 
         UIPasteboard.general.string = detailedHistory.result
         
+        showToast = true
+        
         haptics.impactOccurred(intensity: 0.7)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            showToast = false
+        }
     }
 }

@@ -39,6 +39,7 @@ struct TextResultCapsuleView: View {
                 .padding(.top, 16)
             
         }
+        .environmentObject(viewModel)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background.secondary)
         .cornerRadius(50)
@@ -67,11 +68,7 @@ extension TextResultCapsuleView {
                                         onSuccessLabel: "Copied",
                                         onSuccessLabelColor: .text.white,
                                         onSuccessBackgroundColor: .background.secondary,
-                                        strokeColor: .text.grey) {
-                    
-                    viewModel.copyResultToClipboard()
-                }
-                
+                                        strokeColor: .text.grey, type: .copy)
                 
                 PillLabelWithStroke(count: viewModel.editingTextCharacterCount, text: viewModel.editingTextCharacterCount > 1 ? "Characters" : "Character", textColor: .text.white, backgroundColor: .background.secondary, borderColor: .text.grey)
                 

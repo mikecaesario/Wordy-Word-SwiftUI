@@ -10,7 +10,6 @@
 //  LinkedIn: https://www.linkedin.com/in/mikecaesario/
 //
 
-import Foundation
 import SwiftUI
 
 struct GetViewSizeViewModifier: ViewModifier {
@@ -28,4 +27,5 @@ struct GetViewSizeViewModifier: ViewModifier {
             )
     }
 }
+
 

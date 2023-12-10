@@ -37,4 +37,8 @@ extension View {
     func historyHeaderStyle() -> some View {
         modifier(HistoryHeaderViewModifier())
     }
+    
+    func toastView(_ show: Bool, withType: ToastType) -> some View {
+        modifier(ToastViewModifier(showToast: show, type: withType))
+    }
 }
